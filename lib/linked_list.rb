@@ -83,6 +83,26 @@ class LinkedList
     end
   end
 
+  def pop
+    if @head.nil?
+      popped = ''
+    elsif @head.next_node.nil?
+      popped = @head.data
+      @head = nil
+    else
+      node = @head
+
+      until node.next_node.next_node.nil?
+        node = node.next_node
+      end
+
+      popped = node.next_node.data
+      node.next_node = nil
+    end
+
+    popped
+  end
+
   def prepend(data)
     if @head.nil?
       append(data)
@@ -103,6 +123,7 @@ class LinkedList
         node = node.next_node
       end
     end
+
     string
   end
 end

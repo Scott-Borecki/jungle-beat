@@ -190,6 +190,49 @@ RSpec.describe LinkedList do
       context 'when the given position is negative'
     end
 
+    describe '#pop' do
+      context 'when the list is empty' do
+        it 'returns an empty string' do
+          expect(list.count).to eq(0)
+          expect(list.pop).to eq('')
+          expect(list.count).to eq(0)
+        end
+      end
+
+      context 'when the list has one node' do
+        it 'returns the node and removes it from the list' do
+          list.append('doop')
+
+          expect(list.count).to eq(1)
+          expect(list.to_string).to eq('doop')
+
+          expect(list.pop).to eq('doop')
+          expect(list.count).to eq(0)
+          expect(list.to_string).to eq('')
+        end
+      end
+
+      context 'when the list has nodes' do
+        it 'returns the last node and removes it from the list' do
+          list.append('doop')
+          list.append('deep')
+          list.append('dip')
+          list.append('dink')
+
+          expect(list.count).to eq(4)
+          expect(list.to_string).to eq('doop deep dip dink')
+
+          expect(list.pop).to eq('dink')
+          expect(list.count).to eq(3)
+          expect(list.to_string).to eq('doop deep dip')
+
+          expect(list.pop).to eq('dip')
+          expect(list.count).to eq(2)
+          expect(list.to_string).to eq('doop deep')
+        end
+      end
+    end
+
     describe '#prepend' do
       context 'when the list is empty' do
         it 'adds the node to the list' do
