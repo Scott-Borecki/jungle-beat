@@ -29,6 +29,15 @@ class LinkedList
     end
   end
 
+  def prepend(data)
+    if @head.nil?
+      append(data)
+    else
+      next_node = @head
+      @head = Node.new(data, next_node)
+    end
+  end
+
   def to_string
     string = ''
     unless @head.nil?
