@@ -13,4 +13,26 @@ RSpec.describe Node do
       expect(node.next_node).to eq(nil)
     end
   end
+
+  describe 'instance methods' do
+    let(:node) { Node.new('plop') }
+
+    describe '#add_next_node' do
+      it 'creates a new node as the next node' do
+        node.add_next_node('drop')
+
+        expect(node.next_node).to be_a(Node)
+        expect(node.next_node.data).to eq('drop')
+        expect(node.next_node.next_node).to eq(nil)
+
+        node.add_next_node('drip')
+
+        expect(node.next_node).to be_a(Node)
+        expect(node.next_node.data).to eq('drop')
+        expect(node.next_node.next_node).to be_a(Node)
+        expect(node.next_node.next_node.data).to eq('drip')
+        expect(node.next_node.next_node.next_node).to eq(nil)
+      end
+    end
+  end
 end

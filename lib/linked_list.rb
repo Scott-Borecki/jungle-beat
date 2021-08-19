@@ -6,20 +6,40 @@ class LinkedList
   end
 
   def append(data)
-    @head = Node.new(data)
+    if @head.nil?
+      @head = Node.new(data)
+    else
+      @head.add_next_node(data)
+    end
   end
 
   def count
-    if head.nil?
+    if @head.nil?
       0
-    elsif head.next_node.nil?
-      1
     else
-      2
+      count = 1
+      node = @head
+
+      until node.next_node.nil?
+        count += 1
+        node = node.next_node
+      end
+
+      count
     end
   end
 
   def to_string
-    head.data
+    string = ''
+    unless @head.nil?
+      string = @head.data.to_s
+      node = @head
+
+      until node.next_node.nil?
+        string = string + ' ' + node.next_node.data.to_s
+        node = node.next_node
+      end
+    end
+    string
   end
 end
