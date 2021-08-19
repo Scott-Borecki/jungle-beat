@@ -1,5 +1,4 @@
-require 'rspec'
-require_relative '../lib/node'
+require_relative 'spec_helper'
 
 RSpec.describe Node do
   describe 'object creation' do
