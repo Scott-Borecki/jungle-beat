@@ -29,6 +29,23 @@ class LinkedList
     end
   end
 
+  def insert(position, data)
+    if count == 0 || count < position
+      append(data)
+    else
+      count = 1
+      node = @head
+
+      until count == position
+        count += 1
+        node = node.next_node
+      end
+
+      next_node = node.next_node
+      node.next_node = Node.new(data, next_node)
+    end
+  end
+
   def prepend(data)
     if @head.nil?
       append(data)

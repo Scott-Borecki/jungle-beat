@@ -77,6 +77,55 @@ RSpec.describe LinkedList do
       end
     end
 
+    describe '#insert' do
+      context 'when the list is empty' do
+        it 'adds the node to the list' do
+          list.insert(1, 'dink')
+
+          expect(list.head.data).to eq('dink')
+          expect(list.head.next_node).to eq(nil)
+        end
+      end
+
+      context 'when the position is greater than the length of the list' do
+        it 'adds the node to the end of the list' do
+          list.append('doop')
+          list.append('deep')
+          list.append('dip')
+          list.insert(10, 'dink')
+
+          expect(list.head.data).to eq('doop')
+          expect(list.head.next_node).to be_a(Node)
+          expect(list.head.next_node.data).to eq('deep')
+          expect(list.head.next_node.next_node).to be_a(Node)
+          expect(list.head.next_node.next_node.data).to eq('dip')
+          expect(list.head.next_node.next_node.next_node).to be_a(Node)
+          expect(list.head.next_node.next_node.next_node.data).to eq('dink')
+          expect(list.head.next_node.next_node.next_node.next_node).to eq(nil)
+        end
+      end
+
+      context 'when the list has nodes' do
+        it 'inserts the node at a given position in the list' do
+          list.append('doop')
+          list.append('deep')
+          list.append('dip')
+          list.insert(1, 'dink')
+
+          expect(list.head.data).to eq('doop')
+          expect(list.head.next_node).to be_a(Node)
+          expect(list.head.next_node.data).to eq('dink')
+          expect(list.head.next_node.next_node).to be_a(Node)
+          expect(list.head.next_node.next_node.data).to eq('deep')
+          expect(list.head.next_node.next_node.next_node).to be_a(Node)
+          expect(list.head.next_node.next_node.next_node.data).to eq('dip')
+          expect(list.head.next_node.next_node.next_node.next_node).to eq(nil)
+        end
+      end
+
+      context 'when the given position is negative'
+    end
+
     describe '#prepend' do
       context 'when the list is empty' do
         it 'adds the node to the list' do
