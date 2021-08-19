@@ -119,6 +119,28 @@ RSpec.describe LinkedList do
       end
     end
 
+    describe '#includes?' do
+      before do
+        list.append('doop')
+        list.append('deep')
+        list.append('dip')
+        list.append('dink')
+      end
+
+      context 'when the list includes the given data' do
+        it { expect(list.includes?('doop')).to eq(true) }
+        it { expect(list.includes?('deep')).to eq(true) }
+        it { expect(list.includes?('dip')).to eq(true) }
+        it { expect(list.includes?('dink')).to eq(true) }
+      end
+
+      context 'when the list does not inclue the given data' do
+        it { expect(list.includes?('peep')).to eq(false) }
+        it { expect(list.includes?('pink')).to eq(false) }
+        it { expect(list.includes?('Deep')).to eq(false) }
+      end
+    end
+
     describe '#insert' do
       context 'when the list is empty' do
         it 'adds the node to the list' do

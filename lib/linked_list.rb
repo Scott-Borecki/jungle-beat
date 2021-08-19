@@ -54,6 +54,18 @@ class LinkedList
     string
   end
 
+  def includes?(data)
+    node = @head
+    return true if node.data == data
+
+    until node.next_node.nil?
+      return true if node.next_node.data == data
+      node = node.next_node
+    end
+
+    false
+  end
+
   def insert(position, data)
     if count == 0 || count < position
       append(data)
