@@ -77,6 +77,48 @@ RSpec.describe LinkedList do
       end
     end
 
+    describe '#find' do
+      context 'when the list is empty' do
+        it 'returns an empty string' do
+          expect(list.find(1, 1)).to eq('')
+        end
+      end
+
+      context 'when the list has less nodes than the given return quantity' do
+        it 'returns the nodes through the end of the list' do
+          list.append('doop')
+          list.append('deep')
+          list.append('dip')
+          list.append('dink')
+
+          actual = list.find(1, 4)
+          expected = 'deep dip dink'
+          expect(actual).to eq(expected)
+
+          actual = list.find(3, 4)
+          expected = 'dink'
+          expect(actual).to eq(expected)
+        end
+      end
+
+      context 'when the list has more nodes than the given return quantity' do
+        it 'returns a string of the elements' do
+          list.append('doop')
+          list.append('deep')
+          list.append('dip')
+          list.append('dink')
+
+          actual = list.find(2, 1)
+          expected = 'dip'
+          expect(actual).to eq(expected)
+
+          actual = list.find(1, 3)
+          expected = 'deep dip dink'
+          expect(actual).to eq(expected)
+        end
+      end
+    end
+
     describe '#insert' do
       context 'when the list is empty' do
         it 'adds the node to the list' do

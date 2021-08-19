@@ -17,27 +17,52 @@ class LinkedList
     if @head.nil?
       0
     else
-      count = 1
+      counter = 1
       node = @head
 
       until node.next_node.nil?
-        count += 1
+        counter += 1
         node = node.next_node
       end
 
-      count
+      counter
     end
+  end
+
+  def find(position, quantity)
+    if @head.nil?
+      string = ''
+    else
+      counter = 0
+      node = @head
+
+      until counter == position
+        counter += 1
+        node = node.next_node
+      end
+
+      counter = 1
+      string = node.data
+
+      until counter == quantity || counter + position == count
+        counter += 1
+        string = string + ' ' + node.next_node.data
+        node = node.next_node
+      end
+    end
+
+    string
   end
 
   def insert(position, data)
     if count == 0 || count < position
       append(data)
     else
-      count = 1
+      counter = 1
       node = @head
 
-      until count == position
-        count += 1
+      until counter == position
+        counter += 1
         node = node.next_node
       end
 
