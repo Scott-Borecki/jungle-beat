@@ -50,5 +50,17 @@ RSpec.describe LinkedList do
         end
       end
     end
+
+    describe '#play' do
+      context 'when the list is empty'
+
+      context 'when the list is not empty' do
+        it 'plays the jungle beat' do
+          jb.append('deep doo ditt woo hoo shu')
+
+          expect(jb.play).to eq(`say -r 500 'deep doo ditt woo hoo shu'`)
+        end
+      end
+    end
   end
 end
